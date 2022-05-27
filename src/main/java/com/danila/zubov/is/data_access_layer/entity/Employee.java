@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -36,6 +37,8 @@ public class Employee {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
+    @OneToMany(mappedBy = "skill", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Skill> skills;
 
     @Override
     public boolean equals(Object o) {

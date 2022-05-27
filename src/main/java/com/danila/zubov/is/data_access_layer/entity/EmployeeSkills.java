@@ -13,27 +13,27 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeSkills {
-    @Basic
-    @Column(name = "id", nullable = false)
-    private Long id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id_employee", nullable = false)
-    private Long idEmployee;
-    @Basic
-    @Column(name = "id_skill", nullable = false)
-    private Long idSkill;
+    @Column(name = "id", nullable = false)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "id_employee")
+    private Employee employee;
+    @ManyToOne
+    @JoinColumn(name = "id_skill")
+    private Skill skill;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmployeeSkills that = (EmployeeSkills) o;
-        return Objects.equals(id, that.id) && Objects.equals(idEmployee, that.idEmployee) && Objects.equals(idSkill, that.idSkill);
+        return Objects.equals(id, that.id) && Objects.equals(employee, that.employee) && Objects.equals(skill, that.skill);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idEmployee, idSkill);
+        return Objects.hash(id, employee, skill);
     }
 }

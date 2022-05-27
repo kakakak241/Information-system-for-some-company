@@ -30,14 +30,13 @@ public class Client {
     @Basic
     @Column(name = "mai", nullable = true, length = -1)
     private String mai;
-    @Basic
-    @Column(name = "country", nullable = true)
-    private Long country;
+    @ManyToOne
+    @JoinColumn(name = "country")
+    private Country country;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
