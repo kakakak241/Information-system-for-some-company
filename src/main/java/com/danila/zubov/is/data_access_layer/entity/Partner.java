@@ -7,11 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "partner")
-@Getter
-@Setter
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Partner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -23,17 +19,4 @@ public class Partner {
     @Basic
     @Column(name = "mail", nullable = true, length = -1)
     private String mail;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Partner partner = (Partner) o;
-        return Objects.equals(id, partner.id) && Objects.equals(name, partner.name) && Objects.equals(mail, partner.mail);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, mail);
-    }
 }

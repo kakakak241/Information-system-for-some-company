@@ -9,11 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "employee")
-@Getter
-@Setter
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Employee {
     @Basic
     @Column(name = "first_name", nullable = true, length = -1)
@@ -39,17 +35,4 @@ public class Employee {
     private Long id;
     @OneToMany(mappedBy = "skill", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Skill> skills;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(birthdate, employee.birthdate) && Objects.equals(age, employee.age) && Objects.equals(mail, employee.mail) && Objects.equals(post, employee.post) && Objects.equals(id, employee.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, birthdate, age, mail, post, id);
-    }
 }

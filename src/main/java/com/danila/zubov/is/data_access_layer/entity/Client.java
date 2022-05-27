@@ -9,11 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "client")
-@Getter
-@Setter
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Client {
     @Basic
     @Column(name = "first_name", nullable = true, length = -1)
@@ -37,16 +33,4 @@ public class Client {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Client client = (Client) o;
-        return Objects.equals(firstName, client.firstName) && Objects.equals(lastName, client.lastName) && Objects.equals(birthdate, client.birthdate) && Objects.equals(age, client.age) && Objects.equals(mai, client.mai) && Objects.equals(country, client.country) && Objects.equals(id, client.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, birthdate, age, mai, country, id);
-    }
 }
