@@ -1,11 +1,19 @@
 package com.danila.zubov.is.data_access_layer.entity;
 
-import lombok.*;
+import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "employee")
@@ -15,24 +23,30 @@ public class Employee {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
-    @Basic
-    @Column(name = "first_name", nullable = true, length = -1)
+
+    @Size(min = 2, max = 35)
+    @Column(name = "first_name", nullable = false, length = 35)
     private String firstName;
-    @Basic
-    @Column(name = "last_name", nullable = true, length = -1)
+
+    @Size(min = 2, max = 35)
+    @Column(name = "last_name", nullable = false, length = 35)
     private String lastName;
-    @Basic
-    @Column(name = "birthdate", nullable = true)
+
+    @Column(name = "birthdate", nullable = false)
     private Timestamp birthdate;
-    @Basic
-    @Column(name = "age", nullable = true)
-    private Long age;
-    @Basic
-    @Column(name = "mail", nullable = true, length = -1)
+
+    @Column(name = "age", nullable = false)
+    private Integer age;
+
+    @Size(min = 3, max = 320)
+    @Column(name = "mail", nullable = false, length = 320)
     private String mail;
-    @Basic
-    @Column(name = "post", nullable = true, length = -1)
+
+    @Size(min = 2, max = 35)
+    @Column(name = "post", nullable = false, length = 35)
     private String post;
+
     @OneToMany(mappedBy = "skill", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Skill> skills;
+
 }

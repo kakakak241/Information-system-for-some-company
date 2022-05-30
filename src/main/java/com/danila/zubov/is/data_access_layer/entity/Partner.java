@@ -1,9 +1,14 @@
 package com.danila.zubov.is.data_access_layer.entity;
 
-import lombok.*;
+import lombok.Data;
 
-import javax.persistence.*;
-import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "partner")
@@ -13,10 +18,13 @@ public class Partner {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
-    @Basic
-    @Column(name = "name", nullable = true, length = -1)
+
+    @Size(min = 2, max = 250)
+    @Column(name = "name", nullable = false, length = 250)
     private String name;
-    @Basic
-    @Column(name = "mail", nullable = true, length = -1)
+
+    @Size(min = 3, max = 320)
+    @Column(name = "mail", nullable = false, length = 320)
     private String mail;
+
 }
