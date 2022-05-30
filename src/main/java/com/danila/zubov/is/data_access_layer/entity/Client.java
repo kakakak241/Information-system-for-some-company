@@ -11,6 +11,10 @@ import java.util.Objects;
 @Table(name = "client")
 @Data
 public class Client {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
     @Basic
     @Column(name = "first_name", nullable = true, length = -1)
     private String firstName;
@@ -29,8 +33,4 @@ public class Client {
     @ManyToOne
     @JoinColumn(name = "country")
     private Country country;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id", nullable = false)
-    private Long id;
 }

@@ -11,6 +11,10 @@ import java.util.Objects;
 @Table(name = "employee")
 @Data
 public class Employee {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
     @Basic
     @Column(name = "first_name", nullable = true, length = -1)
     private String firstName;
@@ -29,10 +33,6 @@ public class Employee {
     @Basic
     @Column(name = "post", nullable = true, length = -1)
     private String post;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id", nullable = false)
-    private Long id;
     @OneToMany(mappedBy = "skill", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Skill> skills;
 }
